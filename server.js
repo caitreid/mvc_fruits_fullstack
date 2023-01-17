@@ -75,6 +75,13 @@ app.get('/fruits/seed', (req, res) => {
 // seed script, best practices
 
 
+// index route
+app.get('/fruits', (req, res) => {
+    Fruit.find({})
+        .then(fruits => { res.json( { fruits: fruits })})
+        .catch(err => console.log('The following error occured: \n', err))
+})
+
 
 // Server Listener    
 const PORT = process.env.PORT
