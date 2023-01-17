@@ -18,7 +18,28 @@ This app will start as an API, that receives requests and sends JSON responses, 
 
 Models - all of our data, what shape it's in and what resources we're using (models) and how our resources relate to  one another
 
-Views - all the different ways we can see our data, whether its as a JSON response, or an actual HTML response, this determins how our data can be viewed by the user.
 
 Controllers - connects our views and our models. 
 routes are controllers - the ydetermin how a user can interact with our resources
+
+## What's going on
+
+Using express framewokr to build a server 
+using mongoose to process the requests + run CRUD operations using mongoDB database
+
+
+## What is REST?
+
+Representational State Transfer
+Set of principles that describe how networked resources are accessed and manipulated
+7 RESTful routes that allow us basic operations for reading and manipulating a collection of data
+
+| URL                | REQUEST    | ACTION
+|____________________|____________|________
+| /fruits/           | GET        | index
+| /fruits/:id        | GET        | show
+| /fruits/new        | GET        | new
+| /fruits            | POST       | create
+| /fruits/:id/edit   | GET        | edit 
+| /fruits/:id        | PATCH/PUT  | update
+| /fruits/:id        | DELETE     | destroy

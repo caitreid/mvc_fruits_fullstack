@@ -83,6 +83,65 @@ app.get('/fruits', (req, res) => {
 })
 
 
+// Show
+app.get('/fruits/:id', (req, res) => {
+    // get the id -> save to variable
+    const id = req.params.id
+
+    Fruit.findById(id)
+        .then( fruit => res.json({ fruit: fruit }))
+        .catch(err => console.log(err))
+})
+
+// Create
+app.post('/fruits', (req, res) => {
+    // here, we'll have something called a request body
+    // inside this function, that will be called req.body
+    // we want to pass our req.body to the create method
+    const newFruit = req.body
+    Fruit.create(newFruit)
+        // send a 201 status, along with the json response of the new fruit
+        .then(fruit => {
+            res.status(201).json({ fruit: fruit.toObject() })
+        })
+        // send an error if one occurs
+        .catch(err => console.log(err))
+})
+
+// PUT - replaces the entire document with a new one from req.body
+// PATCH - updates specific fields at specific times
+app.put('/fruits/:id', (req, res) => {
+    // save id to a variable
+    const id = req.params.id
+    // save the request body to a variable
+    const updatedFruit = req.body
+    // use mongoose method findByIdAndUpdate
+
+    Fruit.findByIdAndUpdate(id, updatedFruit, { new: true } )
+        .then(fruit => {
+            console.log( 'The newly updated fruit', fruit )
+
+            res.sendStatus(204)
+        })
+        .catch(err => console.log(err))
+})
+
+
+// Delete Route
+app.delete('/fruits/:id', (req, res) => {
+
+    const id = req.params.id
+
+    Fruit.findByIdAndRemove(id)
+        .then(() => {
+            res.sendStatus(204)
+        })
+
+        .catch(err => console.log(err))
+
+})
+
+
 // Server Listener    
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Now listening to the sweet sounds of port: ${PORT}`))
