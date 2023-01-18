@@ -1,6 +1,9 @@
 // Schema and model for the Fruit resource
 
-const mongoose = require('mongoose')
+const mongoose = require('../utils/connection')
+
+
+// const mongoose = require('mongoose')
 const  {Schema, model} = mongoose
 
 // Schema
